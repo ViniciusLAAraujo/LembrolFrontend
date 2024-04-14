@@ -1,6 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Header from '../Header'
+import Footer from '../Footer'
 
 const MainNavigation: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ const MainNavigation: React.FC = () => {
       <main>
         <Outlet/>
       </main>
-      {/* <Footer/> */}
+      <Footer/>
     </>
   )
 }
