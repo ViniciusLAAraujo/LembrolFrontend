@@ -4,6 +4,10 @@ import slytherin from './Icons/slytherin.svg'
 import ravenclaw from './Icons/ravenclaw.svg'
 import hufflepuff from './Icons/hufflepuff.svg'
 import gryffindor from './Icons/gryffindor.svg'
+import defaultItemImage from './Icons/defaultItemImage.png'
+import calendar from './Icons/calendar.png'
+import cycle from './Icons/cycle.png'
+import broom from './Icons/broom.png'
 
 const getAsset = ({asset}:{asset : string})=> {
     switch (asset) {
@@ -19,6 +23,14 @@ const getAsset = ({asset}:{asset : string})=> {
             return hufflepuff
         case 'gryffindor':
             return gryffindor
+        case 'defaultItemImage':
+            return defaultItemImage
+        case 'calendar':
+            return calendar
+        case 'cycle':
+            return cycle
+        case 'broom':
+            return broom
         default:
             return ""
     }
