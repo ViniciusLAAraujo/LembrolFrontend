@@ -1,8 +1,8 @@
-import { CSSProperties } from "react"
+import { CSSProperties, ReactNode } from "react"
 
 export type ButtonProps = {
-    label: string
-    onClick?:()=> void
+    label: ReactNode 
+    onClick?:(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void 
     style?: CSSProperties
     type?: "button" | "submit" | "reset"
 }
