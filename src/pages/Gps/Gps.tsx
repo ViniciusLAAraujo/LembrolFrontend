@@ -1,47 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { MapContainer, TileLayer, Popup, CircleMarker} from 'react-leaflet'
 import  { LatLngTuple } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import Button from '../../components/Button'
-import DefaultIcon from '../../components/DefaultIcon'
-import styles from './styles'
-import { daysStringSlash } from '../../utils/dateUtils'
-import { Tag } from './types'
 import { handleGeolocation } from '../../utils/locationsUtils'
 import TagsList from '../../components/TagsList/TagsList'
 import TagsMap from '../../components/TagsMap/TagsMap'
-
-const tagsMock : Tag[] = [
-    {
-        id : 1,
-        name: 'Tag 1',
-        lat: -19.92,
-        lng: -43.95,
-        color: '#ff5',
-        daysOfWeek: [
-          0,1,2,3,4,5,6
-        ],
-        specificDates: [
-          "2024-05-01"
-        ]
-    },
-    {
-        id : 2,
-        name: 'Tag 2',
-        lat: -19.92,
-        lng: -43.90,
-        color: '#000',
-        daysOfWeek: [
-
-        ],
-        specificDates: [
-          "2024-05-01"
-        ]
-    },
-]
+import { listTags } from '../../modules/tag/tagService'
+import { Tag } from '../../modules/tag/types'
 
 
 const Gps : React.FC = () => {
+  const [tags, setTags] = useState<Tag[] | null>(null)
+  const [loading, setLoading] = useState<boolean>(true)
   const [selectedTag, setSelectedTag] = useState<Tag | null>(null)
   const [position, setPosition] = useState<LatLngTuple | undefined>(undefined)
 
@@ -51,12 +20,33 @@ const Gps : React.FC = () => {
 
   useEffect(() => {
     handleGeolocation().then(setPosition)
+    const fetchTags = async () => {
+      try {
+        const tagList = await listTags()
+        var filteredtags= tagList.map(tag => {
+          return {
+            ...tag,
+            lat: tag.lat ?? (Math.random() * ((-(19.5 - 19.9)) + 19.9)*-1).toFixed(2),
+            lng: tag.lng ?? (Math.random() * ((-(43.8 - 43.9)) + 43.9)*-1).toFixed(2) ,
+          }
+        })
+        setTags(filteredtags as Tag[])
+      } catch (err) {
+        console.error('Failed to fetch tags', err)
+      } finally {
+        setLoading(false)
+      } 
+    }
+    fetchTags() 
   }, [])
-
   return (
     <div style={{display: 'flex', flex: 1}}>
-      <TagsList tags={tagsMock} handleTagClick={handleTagClick}/>
-      <TagsMap mapPosition={position} selectedTag={selectedTag} tags={tagsMock}/>
+      {!loading && tags &&
+        <TagsList tags={tags} handleTagClick={handleTagClick}/>
+      }
+      {!loading && tags &&
+        <TagsMap mapPosition={position} selectedTag={selectedTag} tags={tags}/>
+      }
     </div>
     )
 }

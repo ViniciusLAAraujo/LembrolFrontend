@@ -1,5 +1,5 @@
 import { LatLngTuple } from "leaflet"
-import { Tag } from "../../pages/Gps/types"
+import { Tag } from "../../modules/tag/types"
 
 export type TagsMapProps = {
     selectedTag : Tag | null
