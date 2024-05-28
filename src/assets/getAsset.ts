@@ -8,6 +8,7 @@ import defaultItemImage from './Icons/defaultItemImage.png'
 import calendar from './Icons/calendar.png'
 import cycle from './Icons/cycle.png'
 import broom from './Icons/broom.png'
+import edit from './Icons/edit.png'
 
 const getAsset = ({asset}:{asset : string})=> {
     switch (asset) {
@@ -31,6 +32,8 @@ const getAsset = ({asset}:{asset : string})=> {
             return cycle
         case 'broom':
             return broom
+        case 'edit':
+            return edit
         default:
             return ""
     }
