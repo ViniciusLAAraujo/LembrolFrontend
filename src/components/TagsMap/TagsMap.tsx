@@ -10,10 +10,10 @@ const TagsMap: React.FC<TagsMapProps> = ({selectedTag, mapPosition, tags}) => {
             {mapPosition !== undefined  && <MapContainer center={mapPosition} zoom={13} scrollWheelZoom={false} style={styles.defaultFlex}>
             <TileLayer   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {tags.map((tag) => (
-                <CircleMarker  key={tag.id} center={[tag.lat, tag.lng]} radius={20} pathOptions={{color:tag.color}}>
+                <CircleMarker  key={tag.tagId} center={[tag.lat, tag.lng]} radius={20} pathOptions={{color:tag.color}}>
                 <Popup>
                     <span>
-                        {tag.name} Id: {tag.id}
+                        {tag.name} Id: {tag.tagId}
                     </span>
                 </Popup>
                 </CircleMarker>

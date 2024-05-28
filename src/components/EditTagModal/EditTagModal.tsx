@@ -6,6 +6,14 @@ import { EditTagModalProps } from './types'
 import styles from './styles'
 
 const EditTagModal : React.FC<EditTagModalProps> = ({selectedTag}) => {
+    const days:number[] = selectedTag.daysOfWeek.reduce((acc: number[], d) => {
+        if(d.active) acc.push(d.day)
+        return acc
+    }, [])
+    const dates:string[] = selectedTag.specificDates.reduce((acc: string[], d) => {
+        if(d.active) acc.push(d.date)
+        return acc
+    }, [])
     return (
         <div style={styles.mainDiv}>
             <div style={{...styles.colorCircle, background: selectedTag.color}}></div>
@@ -28,16 +36,16 @@ const EditTagModal : React.FC<EditTagModalProps> = ({selectedTag}) => {
                     </div> 
                 </div>
             <div style={styles.centerText}>
-                {`id: ${selectedTag.id}`}
+                {`id: ${selectedTag.tagId}`}
             </div>
             {selectedTag.daysOfWeek.length > 0 && 
                 <div style={styles.borderDiv}>
-                {daysStringSlash(selectedTag.daysOfWeek)}
+                {daysStringSlash(days)}
                 </div>
             }
             {selectedTag.specificDates.length > 0 && 
                 <div style={styles.borderDiv}>
-                {selectedTag.specificDates[0]}
+                {dates[0]}
                 </div>
             }
             </div>

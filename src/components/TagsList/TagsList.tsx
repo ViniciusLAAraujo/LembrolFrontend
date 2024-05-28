@@ -10,7 +10,7 @@ const TagsList: React.FC<TagsListProps> = ({tags, handleTagClick}) => {
                 <h3 style={styles.listTitle}>Items</h3>
                 {tags.map((tag) => (
                 <Button 
-                    key={tag.id} 
+                    key={tag.tagId} 
                     style={styles.btn}
                     onClick={() => handleTagClick(tag)} 
                     type='button' 
