@@ -9,6 +9,7 @@ import { daysStringSlash } from '../../utils/dateUtils'
 import { Tag } from './types'
 import { handleGeolocation } from '../../utils/locationsUtils'
 import TagsList from '../../components/TagsList/TagsList'
+import TagsMap from '../../components/TagsMap/TagsMap'
 
 const tagsMock : Tag[] = [
     {
@@ -55,59 +56,7 @@ const Gps : React.FC = () => {
   return (
     <div style={{display: 'flex', flex: 1}}>
       <TagsList tags={tagsMock} handleTagClick={handleTagClick}/>
-      <div style={{display: 'flex', flex: 5 , padding: 16, borderRadius:8}}>
-        {position !== undefined  && <MapContainer center={position} zoom={13} scrollWheelZoom={false} style={{display:"flex",flex:1}}>
-          <TileLayer   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          {tagsMock.map((tag) => (
-            <CircleMarker  key={tag.id} center={[tag.lat, tag.lng]} radius={20} pathOptions={{color:tag.color}}>
-              <Popup><span>{tag.name} Id: {tag.id}</span></Popup>
-            </CircleMarker>
-          ))}
-          {selectedTag && (
-            <Popup
-            position={[selectedTag.lat, selectedTag.lng]}
-            closeButton={false}
-            >
-            <div style={{display: 'flex', flexDirection: 'row', gap: 8}}>
-                <div style={{background: selectedTag.color, borderRadius:'50%', width:'4rem', height:'4rem', alignSelf:'center'}}></div>
-                <div style={{display: 'flex',flexDirection: 'column', gap: 4}}>
-                  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent:'space-around', gap: 4}}>
-                    <div>
-                      <span>
-                        {selectedTag.name}
-                      </span>
-                    </div>
-                    <div style={{display: 'flex', flex: 1, justifyContent:'flex-end'}}>
-                      <Button 
-                        style={{ padding: 0, background: 'inherit'}}
-                        onClick={()=>{}} 
-                        type='button' 
-                        label={  
-                        <DefaultIcon  imgStyle={{width:"60%"}} imagePath='edit'  />
-                        }
-                      /> 
-                    </div> 
-                  </div>
-                  <div style={{ textAlign: 'center'}}>
-                    {`id: ${selectedTag.id}`}
-                  </div>
-                  {selectedTag.daysOfWeek.length > 0 && 
-                    <div style={{borderStyle:'solid',borderWidth:2, borderColor:'green', borderRadius: 16, textAlign: 'center', padding: 4}}>
-                      {daysStringSlash(selectedTag.daysOfWeek)}
-                    </div>
-                  }
-                  {selectedTag.specificDates.length > 0 && 
-                    <div style={{borderStyle:'solid',borderWidth:2, borderColor:'green', borderRadius: 16, textAlign: 'center', padding: 4}}>
-                      {selectedTag.specificDates[0]}
-                    </div>
-                  }
-                </div>
-            </div>
-            </Popup>
-            
-          )}
-        </MapContainer>}
-      </div>
+      <TagsMap mapPosition={position} selectedTag={selectedTag} tags={tagsMock}/>
     </div>
     )
 }

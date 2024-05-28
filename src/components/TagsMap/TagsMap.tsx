@@ -11,7 +11,11 @@ const TagsMap: React.FC<TagsMapProps> = ({selectedTag, mapPosition, tags}) => {
             <TileLayer   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {tags.map((tag) => (
                 <CircleMarker  key={tag.id} center={[tag.lat, tag.lng]} radius={20} pathOptions={{color:tag.color}}>
-                <Popup><span>{tag.name} Id: {tag.id}</span></Popup>
+                <Popup>
+                    <span>
+                        {tag.name} Id: {tag.id}
+                    </span>
+                </Popup>
                 </CircleMarker>
             ))}
             {selectedTag && (
