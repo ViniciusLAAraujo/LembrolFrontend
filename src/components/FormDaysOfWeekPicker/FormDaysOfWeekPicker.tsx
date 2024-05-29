@@ -18,10 +18,9 @@ const FormDaysOfWeekPicker : React.FC<FormDaysOfWeekPickerProps> = ({ daysOfWeek
   const handleDayChange = ( checked: boolean, index: number ) => {
     let updatedDays: number[]
 
-    if (checked) updatedDays = [...daysOfWeek, index] 
-    else updatedDays = daysOfWeek.filter((dayIndex) => dayIndex !== index) 
-    onSpecificDayChange(updatedDays)
-    
+    if (checked) updatedDays = [...daysOfWeek, index].sort()
+    else updatedDays = daysOfWeek.filter((dayIndex) => dayIndex !== index).sort()
+    onSpecificDayChange(updatedDays) 
   }
 
     return (
@@ -30,7 +29,7 @@ const FormDaysOfWeekPicker : React.FC<FormDaysOfWeekPickerProps> = ({ daysOfWeek
             <div>
                 <Button onClick={() => setDayPopover(!dayPopover)} style={styles.btn} type='button' ref={setReferenceElement} label={<DefaultIcon imgStyle={styles.imgIcon} imagePath='cycle' />} />
             </div>
-            <DaysOfWeekSimpList days={daysOfWeek} />
+            <DaysOfWeekSimpList handleClick={handleDayChange} days={daysOfWeek} />
         </div>
         {dayPopover && <div ref={setPopperElement} style={popperStyles.popper} {...popperAttributes} >
               <div style={styles.popoverDiv}>
