@@ -3,19 +3,19 @@ import styles from './styles'
 import { ToggleSwitchProps } from './types'
 import theme from '../../assets/theme'
 
-const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ isChecked = false, onChange }) => {
+const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ isChecked = 0, onChange }) => {
   const [checked, setChecked] = useState(isChecked)
 
   const handleToggle = () => {
-    setChecked(!checked)
-    onChange?.(!checked)
+    setChecked(checked == 0 ? 1: 0)
+    onChange?.(checked == 0 ? 1: 0)
   }
 
   return (
     <label>
       <input
         type="checkbox"
-        checked={checked}
+        checked={!!checked}
         onChange={handleToggle}
         style={styles.input}
       />
