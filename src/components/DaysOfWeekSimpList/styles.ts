@@ -21,9 +21,9 @@ const styles:Styles  = {
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: '20px',
-        width: '6em', 
-        height: '1.5em', 
-        padding: '0.5em',
+        width: '8em', 
+        height: '2.8em', 
+        padding: '1em',
     },
 }
   
