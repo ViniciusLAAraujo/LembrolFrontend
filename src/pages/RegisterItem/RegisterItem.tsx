@@ -51,8 +51,6 @@ const RegisterItem: React.FC = () => {
       setErrors(newErrors)
       return
     }
-
-    console.log(JSON.stringify(formData))
     
     await createTag(formData)
 
