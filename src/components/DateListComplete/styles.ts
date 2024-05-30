@@ -2,12 +2,12 @@ import React from "react"
 import theme from "../../assets/theme"
 
 type Styles = {
-    daysDiv: React.CSSProperties
+    datesDiv: React.CSSProperties
     dateCard: React.CSSProperties
 }
 
 const styles:Styles  = {
-    daysDiv: {
+    datesDiv: {
         display: 'flex',
         flex: 1,
         flexWrap: 'wrap',
@@ -15,15 +15,15 @@ const styles:Styles  = {
         gap: 8,
     },
     dateCard: {
-        backgroundColor: theme.colors.green[300],
+        backgroundColor: theme.colors.purple[300],
         color: theme.colors.singleton.white,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: '20px',
-        width: '8em', 
-        height: '2.8em', 
-        padding: '1em',
+        width: '6em', 
+        height: '1.5em', 
+        padding: '0.5em',
     },
 }
   

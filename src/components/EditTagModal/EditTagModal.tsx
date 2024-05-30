@@ -5,13 +5,13 @@ import { daysStringSlash } from '../../utils/dateUtils'
 import { EditTagModalProps } from './types'
 import styles from './styles'
 
-const EditTagModal : React.FC<EditTagModalProps> = ({selectedTag}) => {
+const EditTagModal : React.FC<EditTagModalProps> = ({selectedTag, handleEditClick}) => {
     const days:number[] = selectedTag.daysOfWeek.reduce((acc: number[], d) => {
         if(d.active) acc.push(d.day)
         return acc
     }, [])
     const dates:string[] = selectedTag.specificDates.reduce((acc: string[], d) => {
-        if(d.active) acc.push(d.date)
+        if(d.active) acc.push(d.date.split('T')[0])
         return acc
     }, [])
     return (
@@ -27,7 +27,7 @@ const EditTagModal : React.FC<EditTagModalProps> = ({selectedTag}) => {
                     <div style={styles.iconDiv}>
                     <Button 
                         style={styles.btn}
-                        onClick={()=>{}} 
+                        onClick={() => handleEditClick(selectedTag.tagId)} 
                         type='button' 
                         label={  
                         <DefaultIcon  imgStyle={styles.iconImg} imagePath='edit'  />
@@ -45,7 +45,7 @@ const EditTagModal : React.FC<EditTagModalProps> = ({selectedTag}) => {
             }
             {selectedTag.specificDates.length > 0 && 
                 <div style={styles.borderDiv}>
-                {dates[0]}
+                {dates[0].toString()}
                 </div>
             }
             </div>

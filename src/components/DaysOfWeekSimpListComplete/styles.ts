@@ -15,7 +15,6 @@ const styles:Styles  = {
         gap: 8,
     },
     dateCard: {
-        backgroundColor: theme.colors.green[300],
         color: theme.colors.singleton.white,
         display: 'flex',
         justifyContent: 'center',

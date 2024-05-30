@@ -3,4 +3,5 @@ export enum RoutesEnum{
     ABOUT = "",
     NEW = "new",
     GPS = "gps",
+    EDIT = "/edit/:id",
 }
