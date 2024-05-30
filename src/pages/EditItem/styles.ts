@@ -7,6 +7,7 @@ type Styles = {
     formControl: React.CSSProperties
     formContent: React.CSSProperties
     divSide: React.CSSProperties
+    tagName: React.CSSProperties
     saveBtn: React.CSSProperties
     itemImgDiv: React.CSSProperties
     itemImg: React.CSSProperties
@@ -42,6 +43,12 @@ const styles:Styles  = {
         display:'flex',
         flexDirection: "column",
         flex: 1,
+    },
+    tagName: {
+        display:'flex',
+        flexDirection: "row",
+        gap: 16,
+        alignItems: 'center' 
     },
     saveBtn: {
         flex: 1,

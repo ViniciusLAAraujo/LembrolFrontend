@@ -59,7 +59,6 @@ const EditItem: React.FC = () => {
             setErrors(newErrors)
             return
         }
-        //console.log('formData :>> ', JSON.stringify(formData));
         await updateTag(tagData.tagId,formData)
         setErrors({})
     }
@@ -68,7 +67,7 @@ const EditItem: React.FC = () => {
         <div style={styles.pageDiv}>
           <form style={styles.form} onSubmit={handleSubmit}>
             <div style={styles.formControl}>
-              <div style={styles.divSide}>   
+              <div style={styles.divSide}>
                 <h1 style={styles.hs}>Update Item</h1>
               </div>
               <div style={styles.divSide}>   
@@ -80,8 +79,10 @@ const EditItem: React.FC = () => {
                   <DefaultIcon divStyle={styles.itemImgDiv} imgStyle={styles.itemImg} imagePath='defaultItemImage'/>  
               </div>
               <div style={styles.divSide}>
-                  <h1>{tagData.tagId}</h1>
-                    <ToggleSwitch isChecked={formData.active} onChange={handleToggleActive}/>
+                <div style={styles.tagName}>
+                  <h2 style={styles.hs}>{tagData.tagId}</h2>
+                  <ToggleSwitch isChecked={formData.active} onChange={handleToggleActive}/>
+                </div>
                   <br/>
                   <FormTextInput
                       label="Name:"

@@ -1,5 +1,4 @@
 import React from "react"
-import theme from "../../assets/theme"
 
 type Styles = {
     input: React.CSSProperties
@@ -15,15 +14,15 @@ const styles:Styles  = {
         position: 'absolute',
         top: '50%',
         transform: 'translateY(-50%)',
-        width: '24px',
-        height: '24px',
+        width: '1.4em',
+        height: '1.4em',
         borderRadius: '50%',
         transition: 'left 0.3s ease',
     },
-    track: {
-        width: '40px',
-        height: '20px',
-        borderRadius: '10px',
+        track: {
+        width: '2.5em',
+        height: '1.1em',
+        borderRadius: 8,
         position: 'relative',
     }
 }
