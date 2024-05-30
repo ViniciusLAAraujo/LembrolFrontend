@@ -5,4 +5,5 @@ export type TagsMapProps = {
     selectedTag : Tag | null
     mapPosition : LatLngTuple | undefined
     tags : Tag[]
+    handleEditClick: (id:string) => void
 }

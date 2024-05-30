@@ -6,6 +6,8 @@ import TagsList from '../../components/TagsList/TagsList'
 import TagsMap from '../../components/TagsMap/TagsMap'
 import { listTags } from '../../modules/tag/tagService'
 import { Tag } from '../../modules/tag/types'
+import { useNavigate } from 'react-router-dom'
+import { RoutesEnum } from '../../routes/RoutesEnum'
 
 
 const Gps : React.FC = () => {
@@ -13,6 +15,12 @@ const Gps : React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true)
   const [selectedTag, setSelectedTag] = useState<Tag | null>(null)
   const [position, setPosition] = useState<LatLngTuple | undefined>(undefined)
+  const navigate = useNavigate()
+
+  const handleEditClick = (id : string) => {
+    const editPath = RoutesEnum.EDIT.replace(':id', id);
+    navigate(editPath)
+  }
 
   const handleTagClick = (tag:Tag) => {
     setSelectedTag(tag)
@@ -45,7 +53,7 @@ const Gps : React.FC = () => {
         <TagsList tags={tags} handleTagClick={handleTagClick}/>
       }
       {!loading && tags &&
-        <TagsMap mapPosition={position} selectedTag={selectedTag} tags={tags}/>
+        <TagsMap mapPosition={position} selectedTag={selectedTag} tags={tags} handleEditClick={handleEditClick}/>
       }
     </div>
     )
