@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { FormData } from '../../pages/RegisterItem/types'
-import { CreateTagResponse, TagResponse } from './types'
+import { CreateTagResponse, TagOfDay, TagResponse } from './types'
 import { FormEditData } from '../../pages/EditItem/types'
 
 const baseURL = 'https://localhost:7165/api'
@@ -49,6 +49,16 @@ export const updateTag = async (id:string | undefined,formData: FormEditData): P
     if (!id) { throw new Error('ID is required') }
     if (!/^[a-zA-Z0-9-]+$/.test(id)) { throw new Error('Invalid ID format') }
     const response = await axiosInstance.put(`/Tag/edit_tag/${id}`, formData)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export const tagsOfDay = async (): Promise<TagOfDay[]> => {
+  try {
+    const response = await axiosInstance.get('/Tag/tags_of_the_day')
+    
     return response.data
   } catch (error) {
     throw error
