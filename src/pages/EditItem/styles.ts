@@ -65,7 +65,8 @@ const styles:Styles  = {
     },
     hs: {
         margin: 0,
-        padding:0
+        padding:0,
+        display: 'inline'
     },
     textInput: {
         width:'100%',
