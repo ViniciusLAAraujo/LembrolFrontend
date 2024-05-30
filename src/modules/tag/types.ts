@@ -33,3 +33,9 @@ export type Tag = {
     daysOfWeek: DaysOfWeekResponse[],
     specificDates: SpecificDatesResponse[],
 }
+
+export type TagOfDay = {
+    tagId : string
+    name : string
+    color : string
+}
