@@ -1,6 +1,6 @@
 export enum RoutesEnum{
     ROOT = "/",
-    ABOUT = "",
+    TAGSOFDAY = "",
     NEW = "new",
     GPS = "gps",
     EDIT = "/edit/:id",
