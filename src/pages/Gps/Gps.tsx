@@ -7,7 +7,8 @@ import TagsMap from '../../components/TagsMap/TagsMap'
 import { listTags } from '../../modules/tag/tagService'
 import { Tag } from '../../modules/tag/types'
 import Loading from '../../components/LoadingIcon/Loading'
-
+import { useNavigate } from 'react-router-dom'
+import { RoutesEnum } from '../../routes/RoutesEnum'
 
 
 const Gps : React.FC = () => {
