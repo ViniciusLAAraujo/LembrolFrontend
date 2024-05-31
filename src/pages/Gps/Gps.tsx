@@ -16,6 +16,12 @@ const Gps : React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true)
   const [selectedTag, setSelectedTag] = useState<Tag | null>(null)
   const [position, setPosition] = useState<LatLngTuple | undefined>(undefined)
+  const navigate = useNavigate()
+
+  const handleEditClick = (id : string) => {
+    const editPath = RoutesEnum.EDIT.replace(':id', id);
+    navigate(editPath)
+  }
 
   const handleTagClick = (tag:Tag) => {
     setSelectedTag(tag)
@@ -53,7 +59,7 @@ const Gps : React.FC = () => {
         <TagsList tags={tags} handleTagClick={handleTagClick}/>
       }
       {!loading && tags &&
-        <TagsMap mapPosition={position} selectedTag={selectedTag} tags={tags}/>
+        <TagsMap mapPosition={position} selectedTag={selectedTag} tags={tags} handleEditClick={handleEditClick}/>
       }
     </div>
     )

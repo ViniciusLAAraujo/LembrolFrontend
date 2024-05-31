@@ -4,7 +4,7 @@ import styles from "./styles"
 import { CircleMarker, MapContainer, Popup, TileLayer } from "react-leaflet"
 import EditTagModal from "../EditTagModal/EditTagModal"
 
-const TagsMap: React.FC<TagsMapProps> = ({selectedTag, mapPosition, tags}) => {
+const TagsMap: React.FC<TagsMapProps> = ({selectedTag, mapPosition, tags, handleEditClick}) => {
     return (
         <div style={styles.mapDiv}>
             {mapPosition !== undefined  && <MapContainer center={mapPosition} zoom={13} scrollWheelZoom={false} style={styles.defaultFlex}>
@@ -23,7 +23,7 @@ const TagsMap: React.FC<TagsMapProps> = ({selectedTag, mapPosition, tags}) => {
                 position={[selectedTag.lat, selectedTag.lng]}
                 closeButton={false}
                 >
-                    <EditTagModal selectedTag={selectedTag}/>
+                    <EditTagModal selectedTag={selectedTag} handleEditClick={handleEditClick}/>
                 </Popup>
                 
             )}

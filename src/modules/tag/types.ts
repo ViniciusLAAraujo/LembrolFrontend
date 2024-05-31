@@ -4,17 +4,18 @@ export type CreateTagResponse = {
 
 export type DaysOfWeekResponse = {
     day: number
-    active: boolean
+    active: number
 }
 
 export type SpecificDatesResponse = {
     date: string
-    active: boolean
+    active: number
 }
 
 export type TagResponse = {
     tagId: string
     name: string
+    active: number
     lat: number | null | undefined
     lng: number | null | undefined
     color: string
@@ -27,7 +28,14 @@ export type Tag = {
     name: string
     lat: number 
     lng: number
+    active: number
     color: string
     daysOfWeek: DaysOfWeekResponse[],
     specificDates: SpecificDatesResponse[],
+}
+
+export type TagOfDay = {
+    tagId : string
+    name : string
+    color : string
 }
