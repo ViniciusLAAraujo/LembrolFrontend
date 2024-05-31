@@ -24,6 +24,7 @@ const Header: React.FC = () => {
                     <NavLink
                         to={headerNavLinks.About.to}
                         style={({ isActive }) => ({
+                            
                         ...styles.navlink,
                         ...(isActive ? styles.navlinkactive : {}),
                         })}
@@ -38,8 +39,8 @@ const Header: React.FC = () => {
                 </ul>
             </nav>
             <div style={styles.btnDiv}>
-                <Button onClick={()=>  handleButtonClick(headerNavLinks.New.to)} style={{...styles.btn,color: theme.colors.green[100]}} label={headerNavLinks.New.label}/>
-                <Button onClick={()=>  handleButtonClick(headerNavLinks.GPS.to)} style={{...styles.btn,color: theme.colors.red[100]}} label={headerNavLinks.GPS.label}/>
+                <Button onClick={()=>  handleButtonClick(headerNavLinks.New.to)} style={{...styles.btn,color: theme.colors.green[100], cursor: 'pointer'}} label={headerNavLinks.New.label}/>
+                <Button onClick={()=>  handleButtonClick(headerNavLinks.GPS.to)} style={{...styles.btn,color: theme.colors.red[100], cursor: 'pointer'}} label={headerNavLinks.GPS.label}/>
             </div>          
         </div>
         <DefaultIcon divStyle={styles.imgDiv}  imagePath='ravenclaw'/>

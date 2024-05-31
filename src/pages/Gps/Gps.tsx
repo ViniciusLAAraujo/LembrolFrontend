@@ -6,6 +6,8 @@ import TagsList from '../../components/TagsList/TagsList'
 import TagsMap from '../../components/TagsMap/TagsMap'
 import { listTags } from '../../modules/tag/tagService'
 import { Tag } from '../../modules/tag/types'
+import Loading from '../../components/LoadingIcon/Loading'
+
 
 
 const Gps : React.FC = () => {
@@ -39,6 +41,11 @@ const Gps : React.FC = () => {
     }
     fetchTags() 
   }, [])
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div style={{display: 'flex', flex: 1}}>
       {!loading && tags &&
