@@ -40,15 +40,14 @@ const Gps : React.FC = () => {
           }
         })
         setTags(filteredtags as Tag[])
+        setLoading(false)
       } catch (err) {
         console.error('Failed to fetch tags', err)
-      } finally {
-        setLoading(false)
       } 
     }
     fetchTags() 
   }, [])
-
+//  console.log('loading :>> ', loading);
   if (loading) {
     return <Loading />;
   }
