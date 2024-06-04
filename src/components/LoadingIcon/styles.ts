@@ -1,9 +1,10 @@
-import React from "react";
+import React from "react"
+import theme from "../../assets/theme"
 
 type LoaderStyles = {
-  loaderContainer: React.CSSProperties;
-  loader: (color: string) => React.CSSProperties;
-};
+  loaderContainer: React.CSSProperties
+  loader: (color: string) => React.CSSProperties
+}
 
 const loaderStyles: LoaderStyles = {
   loaderContainer: {
@@ -14,25 +15,25 @@ const loaderStyles: LoaderStyles = {
     width: '100%',
   },
   loader: (color: string) => ({
-    border: '8px solid #f3f3f3',
+    border: `8px solid ${theme.colors.gray[100]}`,
     borderTop: `8px solid ${color}`,
     borderRadius: '50%',
     width: '50px',
     height: '50px',
     animation: 'spin 1s linear infinite',
   }),
-};
+}
 
 const animationStyles = `
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-`;
+`
 
-const styleElement = document.createElement('style');
-styleElement.innerHTML = animationStyles;
-document.head.appendChild(styleElement);
+const styleElement = document.createElement('style')
+styleElement.innerHTML = animationStyles
+document.head.appendChild(styleElement)
 
-export default loaderStyles;
+export default loaderStyles
 
