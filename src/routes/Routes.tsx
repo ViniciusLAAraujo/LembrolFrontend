@@ -7,6 +7,7 @@ import Gps from '../pages/Gps/Gps'
 import { getTagById, tagsOfDay } from '../modules/tag/tagService'
 import EditItem from '../pages/EditItem/EditItem'
 import TagsOfDay from '../pages/TagsOfDay/TagsOfDay'
+import { publishTagIds } from '../modules/mqtt/tagService'
 
 
 
@@ -19,7 +20,12 @@ export const router = createBrowserRouter([{
       index: true,
       element: <TagsOfDay/>,
       loader: async() => {
-        return await tagsOfDay()
+        var tags =  await tagsOfDay()
+        var tagIds = tags.reduce((acc, tag) => {
+          return acc + tag.tagId + ','
+        }, "")
+        publishTagIds(tagIds)
+        return tags
       }
     },
     {path: RoutesEnum.NEW, element: <RegisterItem/>},
