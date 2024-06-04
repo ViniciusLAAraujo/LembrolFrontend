@@ -2,6 +2,7 @@ import axios from 'axios'
 import { FormData } from '../../pages/RegisterItem/types'
 import { CreateTagResponse, TagOfDay, TagResponse } from './types'
 import { FormEditData } from '../../pages/EditItem/types'
+import { publishTagIds } from '../mqtt/tagService'
 
 const baseURL = 'https://localhost:7165/api'
 
@@ -16,7 +17,7 @@ const axiosInstance = axios.create({
 export const createTag = async (formData: FormData): Promise<CreateTagResponse> => {
   try {
     const response = await axiosInstance.post('/Tag/create_tag', formData)
-    
+    publishTagIds(formData.tagId)
     return response.data
   } catch (error) {
     throw error
@@ -49,6 +50,7 @@ export const updateTag = async (id:string | undefined,formData: FormEditData): P
     if (!id) { throw new Error('ID is required') }
     if (!/^[a-zA-Z0-9-]+$/.test(id)) { throw new Error('Invalid ID format') }
     const response = await axiosInstance.put(`/Tag/edit_tag/${id}`, formData)
+    publishTagIds(id)
     return response.data
   } catch (error) {
     throw error
