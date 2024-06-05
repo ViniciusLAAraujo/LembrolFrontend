@@ -10,6 +10,7 @@ import TagsOfDay from '../pages/TagsOfDay/TagsOfDay'
 import { publishTagIds } from '../modules/mqtt/tagService'
 import Oops from '../pages/error/Oops/Oops'
 import NotFound from '../pages/error/NotFound/NotFound'
+import toast from 'react-hot-toast'
 
 
 
@@ -37,7 +38,7 @@ export const router = createBrowserRouter([{
           return tags
         } 
         catch (error) {
-          console.error('Error loading tags of the day:', error)
+          toast.error(`Error loading current tags`)
         }
       },
       errorElement: <NotFound/>
@@ -55,7 +56,7 @@ export const router = createBrowserRouter([{
           if (!tag) throw new Error(`No tag found with ID: ${id}`)
           return tag
       } catch (error) {
-          console.error('Error loading tag by ID:', error)
+          toast.error(`Error loading tag by ID`)
       }
       },
       errorElement: <NotFound/>

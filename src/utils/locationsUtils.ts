@@ -1,4 +1,5 @@
 import { LatLngTuple } from "leaflet"
+import toast from "react-hot-toast"
 
 type GeolocationCoords = {
     latitude: number
@@ -20,11 +21,12 @@ type GeolocationCoords = {
         })
         return [response.coords.latitude, response.coords.longitude]
       } catch (error: any) {
-        console.error('Error getting location:', error.message)
+        toast.error(`Error getting location: 
+                    ${error.message}`)
         return positionMock
       }
     } else {
-      console.error('Geolocation is not supported by this browser.')
+      toast.error('Geolocation is not supported by this browser.')
       return positionMock
     }
   }

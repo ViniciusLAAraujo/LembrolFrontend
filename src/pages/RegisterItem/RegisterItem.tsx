@@ -8,6 +8,7 @@ import FormTextInput from '../../components/FormTextInput/FormTextInput'
 import FormColorInput from '../../components/FormColorInput/FormColorInput'
 import FormDaysOfWeekPicker from '../../components/FormDaysOfWeekPicker/FormDaysOfWeekPicker'
 import { createTag } from '../../modules/tag/tagService'
+import toast from 'react-hot-toast'
 
 
 const RegisterItem: React.FC = () => {
@@ -52,7 +53,13 @@ const RegisterItem: React.FC = () => {
       return
     }
     
-    await createTag(formData)
+    try {
+      await createTag(formData)
+      toast.success(`Tag ${formData.tagId} created`)
+    } catch (error) {
+      toast.error("Failed to create Tag")
+    }
+    
 
     setFormData({
       tagId: '',

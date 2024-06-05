@@ -11,6 +11,7 @@ import ToggleSwitch from '../../components/ToggleSwitch/ToggleSwitch'
 import FormDaysOfWeekPickerComplete from '../../components/FormDaysOfWeekPickerComplete/FormDaysOfWeekPickerComplete'
 import FormDatePickerComplete from '../../components/FormDatePickerComplete/FromDatePickerComplete'
 import { updateTag } from '../../modules/tag/tagService'
+import toast from 'react-hot-toast'
 
 const EditItem: React.FC = () => {
     const tagData = useLoaderData() as TagResponse
@@ -59,7 +60,12 @@ const EditItem: React.FC = () => {
             setErrors(newErrors)
             return
         }
-        await updateTag(tagData.tagId,formData)
+        try {
+          await updateTag(tagData.tagId,formData)
+          toast.success(`Tag ${tagData.tagId} updated`)
+        } catch (error) {
+          toast.error("Failed to update Tag")
+        }
         setErrors({})
     }
 

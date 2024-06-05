@@ -9,6 +9,7 @@ import { Tag } from '../../modules/tag/types'
 import Loading from '../../components/LoadingIcon/Loading'
 import { useNavigate } from 'react-router-dom'
 import { RoutesEnum } from '../../routes/RoutesEnum'
+import toast from 'react-hot-toast'
 
 
 const Gps : React.FC = () => {
@@ -42,12 +43,11 @@ const Gps : React.FC = () => {
         setTags(filteredtags as Tag[])
         setLoading(false)
       } catch (err) {
-        console.error('Failed to fetch tags', err)
+        toast.error('Failed to fetch tags')
       } 
     }
     fetchTags() 
   }, [])
-//  console.log('loading :>> ', loading);
   if (loading) {
     return <Loading />;
   }

@@ -7,6 +7,7 @@ import styles from './styles'
 import { DaysOfWeekResponse } from '../../modules/tag/types'
 import {FormDaysOfWeekPickerCompleteProps} from './types'
 import DaysOfWeekSimpListComplete from '../DaysOfWeekSimpListComplete/DaysOfWeekSimpListComplete'
+import toast from 'react-hot-toast'
 
 
 const FormDaysOfWeekPickerComplete : React.FC<FormDaysOfWeekPickerCompleteProps> = ({ daysOfWeek, onSpecificDayChange /*, handleClearDays*/ }) => {
@@ -35,7 +36,7 @@ const FormDaysOfWeekPickerComplete : React.FC<FormDaysOfWeekPickerCompleteProps>
       day.active == 0 ?  day.active = 1 : day.active = 0
       onSpecificDayChange(newDaysOfWeek)
     } else {
-      console.error(`Day with index ${index} not found in daysOfWeek`)
+      toast.error(`Day with index ${index} not found in daysOfWeek`)
     }
   }
   
