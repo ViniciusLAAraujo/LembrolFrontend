@@ -18,7 +18,6 @@ export const publishTagIds = async (tagsCSV:string) => {
       topic:topic,
       payload:tagsCSV
     }
-    console.log('send :>> ', send);
     const response = await axiosInstance.post(`publish`,send)
     
     return response.data
