@@ -1,7 +1,7 @@
 import axios from "axios"
 
-const baseURL = 'https://localhost:7165/api/Mqtt/'
-const topic = 'lembrol/sendesp'
+const baseURL = import.meta.env.VITE_API_BASE_URL + import.meta.env.VITE_API_MQTT_PUBLISH;
+const topic = import.meta.env.VITE_MQTT_TOPIC;
 
 const axiosInstance = axios.create({
   baseURL,
