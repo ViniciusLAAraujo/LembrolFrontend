@@ -52,7 +52,8 @@ export const router = createBrowserRouter([{
         try {
           const { id } = params
           if (!id) throw new Error('No ID provided')
-          const tag = await getTagById(id)
+          const encodedId = encodeURIComponent(id)
+          const tag = await getTagById(encodedId)
           if (!tag) throw new Error(`No tag found with ID: ${id}`)
           return tag
       } catch (error) {

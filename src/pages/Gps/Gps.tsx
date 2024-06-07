@@ -20,7 +20,8 @@ const Gps : React.FC = () => {
   const navigate = useNavigate()
 
   const handleEditClick = (id : string) => {
-    const editPath = RoutesEnum.EDIT.replace(':id', id);
+    const encodedId = encodeURIComponent(id)
+    const editPath = RoutesEnum.EDIT.replace(':id', encodedId);
     navigate(editPath)
   }
 
