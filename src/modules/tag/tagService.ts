@@ -47,7 +47,6 @@ export const getTagById = async (id:string | undefined): Promise<TagResponse> =>
 export const updateTag = async (id:string | undefined,formData: FormEditData): Promise<TagResponse> => {
   try {
     if (!id) { throw new Error('ID is required') }
-    if (!/^[a-zA-Z0-9-]+$/.test(id)) { throw new Error('Invalid ID format') }
     const response = await axiosInstance.put(`${import.meta.env.VITE_API_TAG_EDIT_ID}${id}`, formData)
     publishTagIds(id)
     return response.data

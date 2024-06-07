@@ -61,7 +61,8 @@ const EditItem: React.FC = () => {
             return
         }
         try {
-          await updateTag(tagData.tagId,formData)
+          const encodedId = encodeURIComponent(tagData.tagId)
+          await updateTag(encodedId,formData)
           toast.success(`Tag ${tagData.tagId} updated`)
         } catch (error) {
           toast.error("Failed to update Tag")
