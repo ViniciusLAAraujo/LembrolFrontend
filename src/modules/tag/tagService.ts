@@ -37,7 +37,6 @@ export const listTags = async (): Promise<TagResponse[]> => {
 export const getTagById = async (id:string | undefined): Promise<TagResponse> => {
   try {
     if (!id) { throw new Error('ID is required') }
-    if (!/^[a-zA-Z0-9-]+$/.test(id)) { throw new Error('Invalid ID format') }
     const response = await axiosInstance.get(`${import.meta.env.VITE_API_TAG_GET_ID}${id}`)
     return response.data
   } catch (error) {
